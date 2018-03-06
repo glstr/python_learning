@@ -13,4 +13,8 @@ def send_msg(host, port, data):
 	s.close()
 	print "received", repr(data)
 
+def send_func():
+
+        
+
 
