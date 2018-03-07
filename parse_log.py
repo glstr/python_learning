@@ -23,7 +23,7 @@ def split_string():
     for data in result:
         print data
 
-def
+
 
 '''
 @brief re function

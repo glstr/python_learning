@@ -3,4 +3,10 @@
 import parse_log as parlog
 
 #test function
-parlog.split_string()
+import server
+import client
+
+import thread
+
+
+
