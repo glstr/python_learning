@@ -5,6 +5,7 @@
 """
 import socket
 
+
 def send_msg(host, port, data):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	s.connect(host, port)
@@ -13,6 +14,12 @@ def send_msg(host, port, data):
 	s.close()
 	print "received", repr(data)
 
+def getaddrinfo(host, port):
+	print socket.getaddrinfo(host, port)
+
+
+getaddrinfo("www.baidu.com", 80)
+print(__name__)
 
 
         
