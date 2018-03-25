@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #coding:utf-8
 '''
 Some tools for daily days

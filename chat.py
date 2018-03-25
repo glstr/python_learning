@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #coding=utf-8
 
 '''
@@ -5,6 +6,7 @@
 '''
 
 import socket
+import chat_tool
 
 class ChatClient:
 	def __init__(self, address, port, name):
@@ -18,30 +20,28 @@ class ChatClient:
 		return
 
 	def break_up(self, session):
+		return
 
 	def send_msg(self, session, msg):
+		return
 
 	def get_msg(self, session):
+		return
 
 	def sessions_info(self):
+		return
 
-	def sign_in():
+	def sign_in(self):
 		#get online and listen connection on port
+		return
 
-	def sign_out():
+	def sign_out(self):
 		#get offline and stop listening
+		return
 
-''' 
-封装数据包的打包和拆分,数据格式,二进制格式
-head（8）+ msgid(8)+ data（str，json字符串）
-
-'''
-class Session:
-	def __init__(self):
-		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect(address, port)
-		self.session = s
-
+client1 = chat_tool.Session("", 8345)
+client1.get_online()
+client1.receive_msg()
 	
 
 
