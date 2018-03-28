@@ -1,7 +1,13 @@
 #!/usr/bin/python
 #coding=utf-8
 
+def change_param(number):
+	number = NumberExample(6)
+	return
 
 
-print 5 * 1024 * 12 + 3 * 1024
+
+class NumberExample:
+	def __init__(self, number):
+		self.number = number
 
