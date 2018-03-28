@@ -19,8 +19,7 @@ def getaddrinfo(host, port):
 	print socket.getaddrinfo(host, port)
 
 
-getaddrinfo("www.baidu.com", 80)
-print(__name__)
+
 
 
         

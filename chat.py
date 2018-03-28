@@ -39,9 +39,7 @@ class ChatClient:
 		#get offline and stop listening
 		return
 
-client1 = chat_tool.Session("", 8345)
-client1.get_online()
-client1.receive_msg()
+
 	
 
 

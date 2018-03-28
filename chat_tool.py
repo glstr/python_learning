@@ -6,8 +6,10 @@ head（8）+ msgid(8)+ data（str，json字符串）
 
 '''
 import socket
+import thread
+import time
 
-class Session:
+class Client:
     buffer_size = 1024
 
     def __init__(self, address, port):
@@ -47,12 +49,31 @@ class Session:
         if self.remote_socket is None:
             print "no remote socket"
         else:
+            while True:
+                str = self.remote_socket.recv(Client.buffer_size)
+                print "message:" + str
+                time.sleep(4)
 
-            str = self.remote_socket.recv(Session.buffer_size)
-            print "message:" + str
+            
 
+def send_msg_with_interval_time(client):
+    for i in range(10):
+        msg = "the msg is " + str(i)
+        time.sleep(5)
+        client.send_msg(msg)
 
+def auto_chat():
+    client_a = Client('localhost', 8974)
+    client_b = Client('localhost', 8976)
 
+    #new thread for one to listen 
+    thread.start_new_thread(client_a.get_online,())
+    time.sleep(1)
 
-
+    client_b.connect('localhost', 8974)
+    time.sleep(2)
+    thread.start_new_thread(send_msg_with_interval_time, (client_b,))
+    client_a.receive_msg()
+    #time.sleep(20)
+auto_chat()
 
