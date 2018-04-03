@@ -40,6 +40,6 @@ class ChatClient:
 		return
 
 
-	
+print 27 * 60 + 41
 
 

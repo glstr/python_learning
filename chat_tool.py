@@ -75,5 +75,5 @@ def auto_chat():
     thread.start_new_thread(send_msg_with_interval_time, (client_b,))
     client_a.receive_msg()
     #time.sleep(20)
-auto_chat()
+#auto_chat()
 
