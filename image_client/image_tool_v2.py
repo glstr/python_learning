@@ -15,7 +15,7 @@ def read_data_from_image(file_url):
      
     return data
 
-file_path = os.getcwd() + 'img.png'
+file_path = os.getcwd() + '/img.png'
 #read_data_from_image(file_path)
 
 default_img_path = "http://img.ivsky.com/img/tupian/pre/201801/03/caihong.jpg"
@@ -30,7 +30,7 @@ def down_image(file_url):
     r= requests.get(file_url)
 
     dir_path = os.getcwd()
-    file_path=dir_path+"img.jpg"
+    file_path=dir_path+"/img.jpg"
     try:
         f = open(file_path, "w")
     except IOError, e:
@@ -41,6 +41,7 @@ def down_image(file_url):
 
     return file_path
 
+down_image(default_img_path)
 
 def get_file_name(file_url):
     i = 0
@@ -51,11 +52,7 @@ def get_file_name(file_url):
             i = i + 1
     file_name = file_url[-i:]    
     return file_name
-            
-
-print get_file_name(default_img_path)
-    
-
+                
 def get_current_dir_path():
     print "get current path"
     print os.getcwd()
