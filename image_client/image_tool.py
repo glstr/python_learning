@@ -14,4 +14,5 @@ def open_image(path):
     print type(a)
     b = list(a)
     print len(b)
-open_image("window.JPG")
+
+
