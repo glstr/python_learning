@@ -9,14 +9,18 @@
 '''
 
 from PIL import Image
+import os
 
 default_img_path = 'img.jpg'
 
 def open_image(path):
+    dir = os.getcwd()
+    path = dir + '/' + path
     try:
         im = Image.open(path)
     except IOError, e:
         print "error msg:", e
+        return 
     else:
         im.show()
     a = im.getdata()
