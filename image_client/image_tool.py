@@ -11,7 +11,7 @@
 from PIL import Image
 import os
 
-default_img_path = 'img.jpg'
+default_img_path = "img.jpg"
 
 def open_image(path):
     dir = os.getcwd()
@@ -47,6 +47,15 @@ def color_img_to_gray_img(file_input, file_output):
         print "data type:", type(data)
         print data[0]
         im.close()
+        return data
 
-open_image(default_img_path)
-color_img_to_gray_img(default_img_path, "")
+def get_gray_data_from_img(img_file):
+    try:
+        im = Image.open(file_input).convert("L")
+    except IOError, e:
+        logging.Warning("[err_msg:%s]", e)
+    else:
+        data = im.getdata()
+        im.close() 
+        return data
+
