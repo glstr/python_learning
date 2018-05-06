@@ -41,5 +41,7 @@ def process_entropy(file_a):
     logging.Info("[entroy:%d]", entroy)
     return 
 
+def auto_find_target_img(dir_path, img_path):
+    logging.info("[dir:%s, img_path:%s]", dir_path, img_path)
 
 
