@@ -1,0 +1,30 @@
+INFO:root:hello world
+INFO:root:hello world
+INFO:root:hello world
+INFO:root:date:20180504
+INFO:root:hello world
+INFO:root:date:20180504
+INFO:root:num:3
+2018-05-04 01:42:52,633 hello world
+2018-05-04 01:42:52,633 date:20180504
+2018-05-04 01:42:52,633 num:3
+2018-05-04 01:52:09,832 hello world log_tool.py how_to_log_in_file
+2018-05-04 01:52:09,832 date:20180504 log_tool.py how_to_log_in_file
+2018-05-04 01:52:09,832 num:3 log_tool.py how_to_log_in_file
+2018-05-04 01:53:15,156 log_tool.py how_to_log_in_file hello world
+2018-05-04 01:53:15,156 log_tool.py how_to_log_in_file date:20180504
+2018-05-04 01:53:15,156 log_tool.py how_to_log_in_file num:3
+[2018-05-04 01:53:59,256] [log_tool.py] [how_to_log_in_file] [hello world]
+[2018-05-04 01:53:59,256] [log_tool.py] [how_to_log_in_file] [date:20180504]
+[2018-05-04 01:53:59,256] [log_tool.py] [how_to_log_in_file] [num:3]
+[2018-05-14 23:46:18,847] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:46:34,008] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:46:44,013] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:48:19,652] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:48:44,536] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:52:10,739] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:53:15,335] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:53:37,954] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-14 23:53:37,954] [process.py] [process_entropy] [[gray_data len:5]]
+[2018-05-15 00:46:46,317] [image_tool.py] [get_gray_data_from_img] [[err_msg:[Errno 2] No such file or directory: './img.jpg']]
+[2018-05-15 00:46:46,318] [process.py] [process_entropy] [[gray_data len:5]]

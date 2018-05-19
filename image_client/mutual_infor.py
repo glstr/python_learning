@@ -15,8 +15,8 @@ class MIBase:
     '''
         @note: Base class for computing MI
     '''
-    def __init__(self, log):
-        self.log = log
+    def __init__(self):
+        #self.log = log
         return 
     
     def compute_entropy(self, gray_data):
@@ -24,14 +24,20 @@ class MIBase:
         static_data = self._static_gray_data(gray_data)
 
         entropy = 0.0
-        sum_num = len(gray_data)
+        sum_num = len(static_data)
+        data_num = len(gray_data)
 
         for i in range(sum_num):
             temp = 0.0
             if(static_data[i] == 0):
                 temp = 0.0
             else:
-                temp = (-static_data[i]/sum_num) * math.log(static_data[i]/sum_num)
+                logging.info("[sum_num:%d]", data_num)
+                temp_x = math.log(static_data[i]/float(data_num))
+                temp_y = -static_data[i]/float(data_num)
+                temp = temp_y * temp_x
+
+                logging.info("[temp:%f, temp_x:%f, temp_y:%f]", temp, temp_x, temp_y)
             entropy = entropy + temp
                 
         return entropy
@@ -52,15 +58,15 @@ class MIBase:
         for i in range(256):
             for j in range(256):
                 temp = 0.0
-                if (h_xy[x][y] == 0):
+                if (h_xy[i][j] == 0):
                     temp = 0.0
                 else:
                     p = float(h_xy[i][j])/ele_num
-                    temp = -p * log(p)
+                    temp = -p * math.log(p)
                 result = result + temp
         return result
 
-    def compute_MI(self, gray_data_a, gray_data_b):
+    def compute_mi(self, gray_data_a, gray_data_b):
         '''
             @note: Compute MI 
         '''

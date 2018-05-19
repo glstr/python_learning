@@ -1,14 +1,18 @@
 #!/usr/bin/python
 #coding=utf-8
+
+
 '''
-    @brief: This file is used to operate image file, which includes 
+    Brief: This file is used to operate image file, which includes 
     read and write file, make color image to gray imaga and so on.
 
     @date: 20180422
     @author: glstr
 '''
 
+
 from PIL import Image
+import logging
 import os
 
 default_img_path = "img.jpg"
@@ -51,11 +55,13 @@ def color_img_to_gray_img(file_input, file_output):
 
 def get_gray_data_from_img(img_file):
     try:
-        im = Image.open(file_input).convert("L")
+        im = Image.open(img_file).convert("L")
     except IOError, e:
-        logging.Warning("[err_msg:%s]", e)
+        print e
+        logging.warning("[err_msg:%s]", e)
+        return "hello"
     else:
         data = im.getdata()
-        im.close() 
+        #im.close() 
         return data
 
