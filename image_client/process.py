@@ -15,7 +15,7 @@ import image_tool
 import mutual_infor
 
 def process_init():
-    logging.basicConfig(filename="./image_client/basic.log", level=logging.DEBUG, 
+    logging.basicConfig(filename="./log/basic.log", level=logging.DEBUG, 
     format='[%(asctime)s] [%(filename)s] [%(funcName)s] [%(message)s]') 
 
 def process_mutual_info(file_a, file_b):
@@ -49,8 +49,11 @@ def auto_find_target_img(dir_path, img_path):
     logging.info("[dir:%s, img_path:%s]", dir_path, img_path)
 
 
-#process_init()
-#file_path = "./image_client/img.jpg"
-#logging.info("[hello]")
-#print process_entropy(file_path)
-#print process_mutual_info(file_path, file_path)
+
+#excute
+if __name__ == '__main__':
+    process_init()
+    file_path = "./image_client/img.jpg"
+    logging.info("[hello]")
+    print process_entropy(file_path)
+    print process_mutual_info(file_path, file_path)

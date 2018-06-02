@@ -5,8 +5,27 @@ import urllib
 import socket
 import json
 
+'''
+    brief: Some function for http request and response
+'''
+
 host = "10.100.57.125"
 
+'''
+    note: url 
+'''
+def make_url():
+    '''
+        note: Make a url useable
+    '''
+    default_url = 'http://host:port/path?key={"value": "hello"}'
+    params = {"key": {"value":"hello"}, "name": "jim"}
+    res = urllib.urlencode(params)
+    print res
+
+'''
+    note: http request
+'''
 def json_http_request(method, parameter):
     body = json.dumps(parameter)
     print body
@@ -57,4 +76,6 @@ def test_replay():
     parameter["replay"] = "https://p2.bdstatic.com/rtmp.liveshow.lss-user.baidubce.com/live/stream_bduid_3479035377_1423824934/recording_20180329135556.m3u8"
     method = "/tool/1.0/liveshowtool.replaceReplay"
     print keyvalue_http_request(method, parameter)
-print test_tool_ex()
+
+if __name__ == '__main__':
+    make_url()

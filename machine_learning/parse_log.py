@@ -1,9 +1,26 @@
 #!/usr/bin/python
 #coding=utf-8
+
+'''
+    @brief: This file is used to extra data from log file.
+'''
+
 import string
-'''
-@brief string function
-'''
+
+
+default_log_path = "./log/basic.log"
+
+class LogParser:
+    def __init__(self, log_path):
+        self.log_path = log_path
+        if (log_path == ""):
+            self.log_path = default_log_path
+        
+    def get_data(self):
+        return 
+
+
+
 def format_str():
     print '{1},{0},{3}{2}'.format('hello','world','i','love')
     print 'name={name}, age={age}'.format(name="jim", age="8")
@@ -26,6 +43,3 @@ def split_string():
 
 
 
-'''
-@brief re function
-'''
