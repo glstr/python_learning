@@ -10,6 +10,10 @@
 '''
 import logging
 import math
+import numpy
+
+import file_handler as fh
+import process
 
 class MIBase:
     '''
@@ -89,5 +93,59 @@ class MIBase:
 '''
     @brief: Find the best image to match target.
 '''
+class ImageFinder:
+    '''
+        brief: Find the best image for base image in specified data_dir
+        of many images.
+        Image format: Just support png and jpeg. And It is better for only
+        one kind of image format in a same directory.
+    '''
+    def __init__(self, base_image, image_dir):
+        self.base_image = base_image
+        self.image_dir = image_dir
+        self._get_imagelist()
 
+    def find_best_image(self):
+        '''
+            brief: Now the best image means that the mi can get the 
+            largest value. 
+            Formula: compute_mi 
+            return: the best image file path.
+        '''
+        if len(self.filelist) <= 0:
+            print "no valid image"
+            return 
+
+        mi_list = []
+        for image in self.filelist:
+            mi_base = MIBase()
+            mi = process.process_mutual_info(self.base_image, image) 
+            mi_list.append(mi)
+            print image, mi
+
+        mi_base = 0
+        i_base = 0
+        for i, mi in enumerate(mi_list):
+            if mi_base < mi:
+                mi_base = mi
+                i_bae = i
+        print mi_base, i_base
+        file_url = self.filelist[i_base]
+        res = {file_url, mi_base}
+        return res
+
+    def _get_imagelist(self):
+        '''
+            brief: Get images list only for jpeg and png.
+        '''
+        self.filelist = fh.get_filelist(self.image_dir)        
+        return 
+
+    
+if __name__ == '__main__':
+    base_dir = "/Users/pengbaojiang/pengbaojiang/code/python_src/python_learning/data/map_img/"
+    base_image = "1.png"
+    base_image = base_dir + base_image
+    finder = ImageFinder(base_image, base_dir)    
+    finder.find_best_image()
 

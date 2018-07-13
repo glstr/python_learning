@@ -41,8 +41,6 @@ def down_image(file_url):
 
     return file_path
 
-down_image(default_img_path)
-
 def get_file_name(file_url):
     i = 0
     for element in file_url[::-1]:
@@ -58,3 +56,5 @@ def get_current_dir_path():
     print os.getcwd()
     print os.path.abspath(os.path.dirname(__file__))
 
+if __name__ == '__main__':
+    return 

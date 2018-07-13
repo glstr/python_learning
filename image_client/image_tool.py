@@ -16,6 +16,7 @@ import logging
 import os
 
 default_img_path = "img.jpg"
+data_dir = "data/map_img/"
 
 def open_image(path):
     dir = os.getcwd()
@@ -65,3 +66,6 @@ def get_gray_data_from_img(img_file):
         #im.close() 
         return data
 
+if __name__ == '__main__':
+    img_path = data_dir + "1.png"
+    open_image(img_path)

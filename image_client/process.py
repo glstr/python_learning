@@ -16,7 +16,7 @@ import mutual_infor
 
 def process_init():
     logging.basicConfig(filename="./log/basic.log", level=logging.DEBUG, 
-    format='[%(asctime)s] [%(filename)s] [%(funcName)s] [%(message)s]') 
+    format='[%(asctime)s] [%(filename)s] [%(funcName)s] %(message)s') 
 
 def process_mutual_info(file_a, file_b):
     '''
@@ -45,15 +45,11 @@ def process_entropy(file_a):
     logging.info("[entropy:%d]", entropy)
     return entropy 
 
-def auto_find_target_img(dir_path, img_path):
-    logging.info("[dir:%s, img_path:%s]", dir_path, img_path)
-
-
-
 #excute
 if __name__ == '__main__':
     process_init()
-    file_path = "./image_client/img.jpg"
-    logging.info("[hello]")
-    print process_entropy(file_path)
-    print process_mutual_info(file_path, file_path)
+    #file_path = "./image_client/img.jpg"
+    file_path_a = image_tool.data_dir + "1.png"
+    file_path_b = image_tool.data_dir + "2.png"
+    print process_entropy(file_path_a)
+    print process_mutual_info(file_path_a, file_path_b)
