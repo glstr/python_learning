@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #coding=utf-8
 
-
 '''
     Brief: This file is used to operate image file, which includes 
     read and write file, make color image to gray imaga and so on.
@@ -9,7 +8,6 @@
     @date: 20180422
     @author: glstr
 '''
-
 
 from PIL import Image
 import logging

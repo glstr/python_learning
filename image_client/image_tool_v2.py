@@ -12,7 +12,6 @@ import os
 def read_data_from_image(file_url):
     data = mpimg.imread(file_url)
     print type(data)
-     
     return data
 
 file_path = os.getcwd() + '/img.png'
