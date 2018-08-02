@@ -19,4 +19,5 @@ def try_operation():
     except ZeroDivisionError, e:
         print "error:", e
     print "hello world"
-try_operation()
+
+redis_operation_first()
