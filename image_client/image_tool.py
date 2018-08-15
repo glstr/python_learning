@@ -42,7 +42,7 @@ def open_image(path):
 def color_img_to_gray_img(file_input, file_output):
     try:
         im = Image.open(file_input).convert("L") 
-    except IOError, e:
+    except IOError as e:
         print "err_msg:", e
     else:
         data = im.getdata()
@@ -61,7 +61,7 @@ def get_gray_data_from_img(img_file):
         return "hello"
     else:
         data = im.getdata()
-        #im.close() 
+        im.close() 
         return data
 
 if __name__ == '__main__':
