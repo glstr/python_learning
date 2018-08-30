@@ -8,12 +8,16 @@ import sys
 from PIL import Image
 from pprint import pprint
 
+import logging
 import mutual_infor as mi
+
 
 '''
     note: Imager 
 '''
 
+default_img_path = "img.jpg"
+data_dir = "data/map_img/"
 
 class Imager:
     def __init__(self, path):
@@ -21,6 +25,17 @@ class Imager:
         self.entropy= 0.0
         self.width = 0
         self.length = 0
+
+    def load(self):
+        try:
+            im = Image.open(self.path)
+        except IOError, e:
+            print "error msg:", e
+            return 
+        self.data = im.getdata()
+        self.width = im.width
+        self.height = im.height
+        im.close()
 
     def display(self):
         data = {}        
@@ -56,7 +71,7 @@ class Imager:
             im.close() 
             return data
 
-
+   
 
 if __name__ == '__main__':
     if len(sys.argv) == 2:

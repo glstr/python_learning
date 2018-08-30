@@ -2,12 +2,17 @@
 #coding=utf-8
 
 '''
-    brief:
+    @brief: common function just for image package
 '''
 
 import os
 import os.path
 import sys
+
+REDIS_ERROR = "redis error"
+
+def write_log(log):
+    print '[', log, ']' 
 
 def get_filelist(dir_path, file_format='.png'):
     allfiles = []
@@ -23,11 +28,5 @@ def get_filelist(dir_path, file_format='.png'):
             path = os.path.abspath(path)
             file_list.append(path)
     return file_list
-
-if __name__ == '__main__':
-    #print get_filelist("../data/map_img")
-    if len(sys.argv) == 2:
-        print sys.argv[1]
-        print get_filelist(sys.argv[1])
 
 
