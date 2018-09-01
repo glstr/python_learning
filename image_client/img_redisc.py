@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #coding=utf-8
 
-
 '''
     @brief: Save image info in redis
 '''
@@ -28,6 +27,8 @@ def smembers(key):
 def hmset(key, mapping):
     r.hmset(key, mapping)
     return 
-    
+
 def hgetall(key):
     return r.hgetall(key)
+
+

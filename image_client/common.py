@@ -5,14 +5,21 @@
     @brief: common function just for image package
 '''
 
+import logging
 import os
 import os.path
+import random
 import sys
 
 REDIS_ERROR = "redis error"
+READ_DATA_ERROR = "read data error"
 
 def write_log(log):
     print '[', log, ']' 
+
+def loging_init():
+    logging.basicConfig(filename="./log/basic.log", level=logging.DEBUG, 
+    format='[%(asctime)s] [%(filename)s] [%(funcName)s] %(message)s') 
 
 def get_filelist(dir_path, file_format='.png'):
     allfiles = []
@@ -29,4 +36,9 @@ def get_filelist(dir_path, file_format='.png'):
             file_list.append(path)
     return file_list
 
+def get_filename(file_path):
+    strs = file_path.split('/')
+    return strs[-1] 
 
+def random_num(min_num, max_num):
+    return random.randint(min_num, max_num)

@@ -8,8 +8,6 @@
     @date: 20180507
 '''
 
-
-import logging
 import os
 
 import common
