@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^snower/', include('snower.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^image/(?P<path>.*)$', serve, {'document_root': '/Users/pengbaojiang/pengbaojiang/code/python_src/python_learning/snower/pollsite/pollsite/data/map_img'})
+    url(r'^image/(?P<path>.*)$', serve, {'document_root': "/Users/pengbaojiang/pengbaojiang/data/data/map_img"})
 ]
