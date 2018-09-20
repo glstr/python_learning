@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#coding:utf-8
+# coding:utf-8
 
 
 '''
@@ -11,6 +11,11 @@ import time
 
 midnight = "00:00:00"
 
+
+def get_ts():
+    return time.time()
+
+
 def get_today():
     '''
         @note: Get today.
@@ -18,6 +23,7 @@ def get_today():
     today = datetime.datetime.today()
     date_str = today.strftime("%Y%m%d")
     return date_str
+
 
 def get_last_day():
     '''
@@ -27,6 +33,15 @@ def get_last_day():
     yesterday = today - datetime.timedelta(1)
     date_str = yesterday.strftime("%Y%m%d") 
     return date_str
+
+
+def get_date_from_ts(format):
+    now = time.time()
+    tl = time.gmtime(int(now))
+    format_time = time.strftime("%Y-%m-%dT%H:%M:%SZ", tl)
+    print format_time
+    return format_time
+
 
 def get_ts_from_date(date_str):
     '''
@@ -38,11 +53,13 @@ def get_ts_from_date(date_str):
     ts = int(time.mktime(st))
     return str(ts)
 
+
 def second_of_a_day():
     '''
         @note: Get second of a day.
     ''' 
     return 24 * 60 * 60
+
 
 def second_of_30_day():
     '''
@@ -51,3 +68,5 @@ def second_of_30_day():
     return 30 * second_of_a_day()
 
 
+if __name__ == '__main__':
+    get_date_from_ts("")

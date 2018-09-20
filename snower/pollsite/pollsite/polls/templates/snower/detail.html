@@ -1,0 +1,10 @@
+<head><title>{{ title }}</title></head>
+<ul>
+    <img src='{{ img_path }}' alt='img'></img>
+</ul>
+<form action="/snower/imagekitchen/{{ img_last}}/image", method="GET">
+    <input type="SUBMIT", value="last"></input>
+</form>
+<form action="/snower/imagekitchen/{{ img_next }}/image", method="GET">
+    <input type="SUBMIT", value="next"></input>
+</form>
