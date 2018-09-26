@@ -1,8 +1,7 @@
 #!/usr/bin/python
-#coding=utf-8
+# coding=utf-8
 
 import json
-import os
 import sys
 
 from PIL import Image
@@ -19,10 +18,11 @@ import mutual_infor as mi
 default_img_path = "img.jpg"
 data_dir = "data/map_img/"
 
+
 class Imager:
     def __init__(self, path):
         self.path = path        
-        self.entropy= 0.0
+        self.entropy = 0.0
         self.width = 0
         self.length = 0
 
@@ -54,7 +54,7 @@ class Imager:
 
         self.width = im.width
         self.height = im.height
-        #get entropy 
+        # get entropy 
         self.data = im.getdata()
         mi_base = mi.MIBase()
         self.entropy = mi_base.compute_entropy(self.data)
@@ -72,7 +72,6 @@ class Imager:
             return data
 
    
-
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         image = Imager(sys.argv[1])

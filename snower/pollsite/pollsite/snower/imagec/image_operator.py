@@ -1,11 +1,12 @@
 #!/usr/bin/python
-#coding=utf-8
+# coding=utf-8
 '''
     @brief: image operator
     @author: glstr
 '''
 
 from PIL import Image
+
 
 def divide(path):
     im = Image.open(path) 
@@ -25,9 +26,11 @@ def divide(path):
     _divide(box_2, im, "2")
     _divide(box_3, im, "3")
 
+
 def _divide(box, image, filename):
     region = image.crop(box)
     region.save(filename+'.jpg')
+
 
 if __name__ == '__main__':
     path = '/Users/pengbaojiang/pengbaojiang/code/python_src/python_learning/image_client/img.jpg'
