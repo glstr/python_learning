@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+
+package rdproto;
+
+service Guarder {
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+    rpc Fury(FuryRequest) returns (FuryReply) {}
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}
+
+message FuryRequest {
+    int32 method = 1;
+    string param = 2;
+}
+
+message FuryReply {
+    string result = 1;
+    int32 error_code = 2;
+    string error_msg = 3;
+}
+
