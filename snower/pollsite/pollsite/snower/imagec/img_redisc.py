@@ -23,6 +23,8 @@ def sadd(key, *value):
 def smembers(key):
     return r.smembers(key)
 
+def sismember(key, value):
+    return r.sismember(key, value)
 
 '''
     @brief: operation of hash

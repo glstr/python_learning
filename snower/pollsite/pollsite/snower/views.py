@@ -6,6 +6,7 @@ from django.http import HttpResponse
 
 from fury import redisc
 from imagec import image_manager
+from imagec import imager 
 
 # Create your views here.
 
@@ -44,8 +45,18 @@ def image_detail(request, img_id):
         img_last = 1
     img_next = img_id + 1
     img_path = '/image/' + str(img_id) + '.png'
+
+        
+    # need fix 
+    # manager -> imager
+    im = image_manager.ImageManager("snow")
+    path = im.get_image_path(img_id)
+    imgr = imager.Imager(img_path)
+    img_info = imgr.get_image_info()
+    
     content = {
             "title": "image detail", "img_path": img_path,
-            "img_next": img_next, "img_last": img_last}
+            "img_next": img_next, "img_last": img_last,
+            "img_info": img_info}
     return render(request, 'snower/detail.html', content)
 

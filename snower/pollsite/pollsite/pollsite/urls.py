@@ -17,9 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.static import serve
 
+img_path = "/home/snow/pengbaojiang/data/map_img"
+
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^snower/', include('snower.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^image/(?P<path>.*)$', serve, {'document_root': "/Users/pengbaojiang/pengbaojiang/data/data/map_img"})
+    url(r'^image/(?P<path>.*)$', serve, {'document_root': "/home/snow/pengbaojiang/data/map_img"})
 ]

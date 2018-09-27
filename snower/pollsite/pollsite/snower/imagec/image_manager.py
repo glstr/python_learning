@@ -61,6 +61,14 @@ class ImageManager:
             common.write_log("no infor")
         return res
 
+    def get_image_path(self, img_id):
+        img_path = self.metainfo + str(img_id) + ".png"
+        key = PCLOUD_METAINFO + self.name
+        is_member = redisc.sismember(key, img_path)
+        if not is_member:
+            img_path = ""
+        return img_path
+
     def _get_metainfo(self):
         key = PCLOUD_METAINFO + self.name
         return redisc.hgetall(key)

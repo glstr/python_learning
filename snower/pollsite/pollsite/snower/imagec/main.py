@@ -48,9 +48,9 @@ def caculate_mi_list(dir_path):
 
 
 if __name__ == '__main__':
-    dir_path = "/Users/pengbaojiang/pengbaojiang/code/python_src/python_learning/snower/pollsite/pollsite/data/map_img/"
+    dir_path = "/home/snow/pengbaojiang/data/map_img/"
     manager = ima.ImageManager("snow")
-    # manager.add_dir(dir_path)
+    manager.add_dir(dir_path)
     manager.load()
     file_path = manager.get_allimages_path()
     num = len(file_path)    

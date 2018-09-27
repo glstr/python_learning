@@ -24,7 +24,8 @@ class Imager:
         self.path = path        
         self.entropy = 0.0
         self.width = 0
-        self.length = 0
+        self.height = 0
+        self.is_process = False
 
     def load(self):
         try:
@@ -45,6 +46,16 @@ class Imager:
         data["height"] = self.height
         res = json.dumps(data)
         return res
+
+
+    def get_image_info():
+        image_info = {}
+        if not self.is_process:
+            self.process()
+        image_info["width"] = self.width
+        image_info["height"] = self.height
+        image_info["entropy"] = self.entropy
+        return image_info
 
     def process(self):
         try:
