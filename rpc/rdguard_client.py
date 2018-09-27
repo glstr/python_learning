@@ -19,17 +19,24 @@ def hello():
         print res.message
 
 
-def fury():
+def fury(method, param):
     with grpc.insecure_channel(addr) as channel:
         stub = rdguard_pb2_grpc.GuarderStub(channel)
         res = stub.Fury(rdguard_pb2.FuryRequest(
-                                    method=1, param='{"room_id":2758101}'))
-        if res.error_code != 0:
-            print 'error_code:%d, error_msg:%s' % (
+                                    method=method, param=param))
+        return res
+        
+
+def get_roominfo(room_id):
+    param = '{"room_id":room_id}'
+    method = 1    
+    res = fury(method, param)
+    if res.error_code != 0:
+        print 'error_code:%d, error_msg:%s' % (
                     res.error_code,
                     res.error_msg)
-        else:
-            pprint(res.result)
+    else:
+        pprint(res.result)
 
 
 if __name__ == '__main__':
