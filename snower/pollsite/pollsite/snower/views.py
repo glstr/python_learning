@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -46,13 +48,16 @@ def image_detail(request, img_id):
     img_next = img_id + 1
     img_path = '/image/' + str(img_id) + '.png'
 
-        
     # need fix 
     # manager -> imager
     im = image_manager.ImageManager("snow")
+    im.load()
     path = im.get_image_path(img_id)
-    imgr = imager.Imager(img_path)
+    print path
+    imgr = imager.Imager(path)
     img_info = imgr.get_image_info()
+    img_info = json.dumps(img_info)
+    print "img_info", img_info
     
     content = {
             "title": "image detail", "img_path": img_path,
