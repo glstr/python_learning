@@ -75,6 +75,7 @@ class ImageClient():
     def start(self):
         return 
 
+
 if __name__ == '__main__':
     image_client = ImageClient()
     image_client.load_config()
