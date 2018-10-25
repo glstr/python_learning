@@ -10,10 +10,11 @@ from PIL import Image
 
 
 class ImageOpeor:
-    def __init__(self):
+    def __init__(self, path):
+        self.base_path = path
         return 
     
-    def divide(self, path):
+    def cut_average(self, path):
         im = Image.open(path) 
         width = im.width
         height = im.height
@@ -26,12 +27,12 @@ class ImageOpeor:
         box_2 = (width/2, 0, width, height/2)
         box_3 = (width/2, height/2, width, height)
     
-        self._divide(box, im, "0")
-        self._divide(box_1, im, "1")
-        self._divide(box_2, im, "2")
-        self._divide(box_3, im, "3")
-    
-    def _divide(self, box, image, filename):
+        self.cut(box, im, "0")
+        self.cut(box_1, im, "1")
+        self.cut(box_2, im, "2")
+        self.cut(box_3, im, "3")
+        
+    def cut(self, box, image, filename):
         region = image.crop(box)
         region.save(filename+'.jpg')
 

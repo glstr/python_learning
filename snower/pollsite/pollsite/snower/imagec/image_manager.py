@@ -89,5 +89,7 @@ class ImageManager:
         return float(img_str)
 
         
+if __name__ == '__main__':
+    print 'hello world'
 
 

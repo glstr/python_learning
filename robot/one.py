@@ -1,5 +1,6 @@
 #!/usr/bin/python
-#coding=utf-8
+# coding=utf-8
+
 
 class Robot:
     def __init__(self):
@@ -20,6 +21,7 @@ class Robot:
         print self.name
         print self.age
         print self.day
+
 
 if __name__ == '__main__':
     robot = Robot()    
