@@ -62,11 +62,7 @@ class ImageManager:
         return res
 
     def get_image_path(self, img_id):
-        img_path = self.metainfo + str(img_id) + ".png"
-        key = PCLOUD_METAINFO + self.name
-        is_member = redisc.sismember(key, img_path)
-        if not is_member:
-            img_path = ""
+        img_path = self.metainfo["dir_path"] + str(img_id) + ".png"
         return img_path
 
     def _get_metainfo(self):
@@ -93,5 +89,7 @@ class ImageManager:
         return float(img_str)
 
         
+if __name__ == '__main__':
+    print 'hello world'
 
 

@@ -5,6 +5,7 @@
     @brief: tool of function test for package
 '''
 
+import sys
 
 from pyecharts import Bar
 from pyecharts import Line
@@ -48,7 +49,11 @@ def caculate_mi_list(dir_path):
 
 
 if __name__ == '__main__':
-    dir_path = "/home/snow/pengbaojiang/data/map_img/"
+    # dir_path = "/home/snow/pengbaojiang/data/map_img/"
+    if len(sys.argv) != 2:
+        print "param error"
+        
+    dir_path = sys.argv[1]
     manager = ima.ImageManager("snow")
     manager.add_dir(dir_path)
     manager.load()

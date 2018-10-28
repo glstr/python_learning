@@ -7,7 +7,6 @@ import sys
 from PIL import Image
 from pprint import pprint
 
-import logging
 import mutual_infor as mi
 
 
@@ -47,8 +46,7 @@ class Imager:
         res = json.dumps(data)
         return res
 
-
-    def get_image_info():
+    def get_image_info(self):
         image_info = {}
         if not self.is_process:
             self.process()
@@ -62,14 +60,14 @@ class Imager:
             im = Image.open(self.path).convert("L")
         except IOError as e:
             print e    
-
-        self.width = im.width
-        self.height = im.height
-        # get entropy 
-        self.data = im.getdata()
-        mi_base = mi.MIBase()
-        self.entropy = mi_base.compute_entropy(self.data)
-        im.close()
+        else:
+            self.width = im.width
+            self.height = im.height
+            # get entropy 
+            self.data = im.getdata()
+            mi_base = mi.MIBase()
+            self.entropy = mi_base.compute_entropy(self.data)
+            im.close()
 
     def get_graydata(self):
         try:

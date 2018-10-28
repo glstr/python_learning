@@ -21,6 +21,7 @@ class Robot:
         print self.age
         print self.day
 
+
 if __name__ == '__main__':
     robot = Robot()    
     robot.introduce()

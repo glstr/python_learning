@@ -49,7 +49,7 @@ def get_ts_from_date(date_str):
         @input: date as 2018051300.
         @output: timestamp.
     '''
-    st = time.strptime(date_str, "%Y%m%d %H:%M:%S")
+    st = time.strptime(date_str, "%Y%m%d%H")
     ts = int(time.mktime(st))
     return str(ts)
 
