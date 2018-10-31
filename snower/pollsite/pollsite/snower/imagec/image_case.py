@@ -126,13 +126,49 @@ def mutual_info_f(param):
 
 
 def mutual_info_ex(param):
-    paths = common.parse_param(param)    
-    if len(paths) != 2:
-        print "param error"
-        return 
-    res = _mutual_info_ex(paths[0], paths[1])
-    pprint(res)
-    return res
+    params = common.parse_param(param)    
+    path_a = params[0]
+    ids = []
+    mis = []
+    for i in range(5):
+        mis.append([])
+    j = 0
+    for path in params:
+        res = _mutual_info_ex(path, path_a)
+        if j != 0:
+            ids.append(j)
+            for i in range(5):
+                mis[i].append(res[i])
+        pprint(res)
+        j = j + 1
+    bar = Line("我的第一个图表", "这里是副标题")
+    num_mis = len(mis)
+    for index in range(num_mis):
+        num_ele = len(mis[index])
+        max_n = max(mis[index])
+        for ele_i in range(num_ele):
+            mis[index][ele_i] = mis[index][ele_i]/max_n
+            
+    for i in range(5):
+        bar.add("mi"+str(i), ids, mis[i], is_more_utils=True)
+    bar.render()
+    pprint(mis)        
+    return 
+
+
+def mutual_info_ex_f(param):
+    dir_path = "range/" 
+    all_path = ""
+    with open(param) as f:
+        for line in f.readlines():
+            path = dir_path + line
+            path = path.rstrip('\n')
+            if all_path == "":
+                all_path = path
+            else:
+                all_path = all_path + "," + path
+    print all_path
+    return mutual_info_ex(all_path)
 
 
 def _mutual_info(path_a, path_b):
@@ -150,20 +186,36 @@ def _mutual_info(path_a, path_b):
 
 
 def _mutual_info_ex(path_a, path_b):
+
+    mi_o = mi.MIBase()
+
     img_o = img_ope.ImageOpeor()
     img_as = img_o.divide_to_four(path_a)
     img_bs = img_o.divide_to_four(path_b)
+
+    img = imager.Imager(path_a)  
+    data_o = img.get_graydata()
+    en_o = mi_o.compute_entropy(data_o)
+
     res = []
-    for i in range(4):
-        mi_o = mi.MIBase()
+    mi_all = 0.0
+    for i in range(len(img_as)):
+
         data_a = img_as[i].convert("L").getdata()
         data_b = img_bs[i].convert("L").getdata()
         en_a = mi_o.compute_entropy(data_a)
-        en_b = mi_o.compute_entropy(data_b)
-        join_e = mi_o.compute_join_entropy(data_a, data_b)
+        # en_b = mi_o.compute_entropy(data_b)
+        weight = en_a / en_o
+
+        # join_e = mi_o.compute_join_entropy(data_a, data_b)
+
+        mir_o = mi_o.compute_mi(data_a, data_a)
         mir_r = mi_o.compute_mi(data_a, data_b)
-        res_temp = [en_a, en_b, join_e, mir_r]
-        res.append(res_temp)
+        mi_i = mir_r / mir_o
+        mi_temp = mi_i * weight
+        mi_all = mi_all + mi_temp
+        res.append(mir_r)
+    res.append(mi_all)        
     return res
 
 
@@ -172,6 +224,7 @@ def load():
     funcs['m_info'] = mutual_info
     funcs['m_info_f'] = mutual_info_f
     funcs['m_info_ex'] = mutual_info_ex
+    funcs['m_info_ex_f'] = mutual_info_ex_f
     
 
 def usage():
