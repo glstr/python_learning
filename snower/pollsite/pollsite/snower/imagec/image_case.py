@@ -12,6 +12,7 @@ from pyecharts import Line
 import common
 import imager 
 import image_manager as img_mar
+import image_operator as img_ope
 import img_redisc as redisc
 import mutual_infor as mi
 
@@ -109,10 +110,10 @@ def mutual_info(param):
     return 
 
 
-def mutual_info_f(file_path):
+def mutual_info_f(param):
     dir_path = "range/" 
     all_path = ""
-    with open(file_path) as f:
+    with open(param) as f:
         for line in f.readlines():
             path = dir_path + line
             path = path.rstrip('\n')
@@ -124,8 +125,18 @@ def mutual_info_f(file_path):
     return mutual_info(all_path)
 
 
+def mutual_info_ex(param):
+    paths = common.parse_param(param)    
+    if len(paths) != 2:
+        print "param error"
+        return 
+    res = _mutual_info_ex(paths[0], paths[1])
+    pprint(res)
+    return res
+
+
 def _mutual_info(path_a, path_b):
-    img_a = imager.Imager(path_a)    
+    img_a = imager.Imager(path_a)
     data_a = img_a.get_graydata()
     img_b = imager.Imager(path_b)
     data_b = img_b.get_graydata()
@@ -138,10 +149,29 @@ def _mutual_info(path_a, path_b):
     return res
 
 
+def _mutual_info_ex(path_a, path_b):
+    img_o = img_ope.ImageOpeor()
+    img_as = img_o.divide_to_four(path_a)
+    img_bs = img_o.divide_to_four(path_b)
+    res = []
+    for i in range(4):
+        mi_o = mi.MIBase()
+        data_a = img_as[i].convert("L").getdata()
+        data_b = img_bs[i].convert("L").getdata()
+        en_a = mi_o.compute_entropy(data_a)
+        en_b = mi_o.compute_entropy(data_b)
+        join_e = mi_o.compute_join_entropy(data_a, data_b)
+        mir_r = mi_o.compute_mi(data_a, data_b)
+        res_temp = [en_a, en_b, join_e, mir_r]
+        res.append(res_temp)
+    return res
+
+
 def load():
     funcs['info'] = img_info
     funcs['m_info'] = mutual_info
     funcs['m_info_f'] = mutual_info_f
+    funcs['m_info_ex'] = mutual_info_ex
     
 
 def usage():
