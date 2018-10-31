@@ -1,12 +1,10 @@
 #!/usr/bin/python
 # coding:utf-8
 
-
-import os
-
 '''
     brief: Examples show how to call shell command
 '''
+import os
 
 
 def call_ls():

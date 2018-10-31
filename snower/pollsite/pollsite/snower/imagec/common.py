@@ -47,3 +47,7 @@ def get_filename(file_path):
 
 def random_num(min_num, max_num):
     return random.randint(min_num, max_num)
+
+
+def parse_param(param):
+    return param.split(",")

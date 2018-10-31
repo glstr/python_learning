@@ -32,8 +32,9 @@ class ImageOpeor:
         self.cut(box_2, im, "2")
         self.cut(box_3, im, "3")
         
-    def cut(self, box, image, filename):
-        region = image.crop(box)
+    def cut(self, box, filename):
+        im = Image.open(self.base_path)
+        region = im.crop(box)
         region.save(filename+'.jpg')
 
 

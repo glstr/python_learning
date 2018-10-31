@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#coding=utf-8
+# coding=utf-8
 
 '''
     @brief: This file is used to caculate image mutual infomation. As we don't know it exactly that
@@ -10,7 +10,7 @@
 '''
 import logging
 import math
-import numpy
+
 
 class MIBase:
     '''
