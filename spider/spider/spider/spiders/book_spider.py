@@ -13,7 +13,7 @@ class BooksSpider(scrapy.Spider):
         for book in response.css('article.product_pod'):
             name = book.xpath('./h3/a/@title').extract_first()
             price = book.css('p.price_color::text').extract_first()
-            yield {'name':name, 'price':price}
+            yield {'name': name, 'price': price}
             next_url = response.css('url.pager li.next a::attr(href)').extract_first()
             if next_url:
                 next_url = response.urljoin(next_url)
