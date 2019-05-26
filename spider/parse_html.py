@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# coding:utf-8
+# encoding:utf-8
 
 import pprint
 import sys
@@ -12,10 +12,13 @@ import utils
 class HtmlParser:
     def __init__(self, url):
         self.url = url
+        self.content = ''
         return 
 
     def _get_content(self):
-        return utils.get_html(self.url)
+        if self.content == '':
+            self.content = utils.get_html(self.url)
+        return self.content
         
     def _get_obj_from_html(self, key):
         res = {}
