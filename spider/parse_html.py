@@ -5,7 +5,8 @@ import pprint
 import sys
 
 from bs4 import BeautifulSoup
-import requests
+
+import utils
 
 
 class HtmlParser:
@@ -14,38 +15,27 @@ class HtmlParser:
         return 
 
     def _get_content(self):
-        r = requests.get(self.url)
-        if r.status_code != requests.codes.ok:
-            return ""
-        return r.text
-
-    def _get_obj_from_html(self, key, condition):
-        res = []
-        nameList = self.bsObj.findAll(key, condition)
+        return utils.get_html(self.url)
+        
+    def _get_obj_from_html(self, key):
+        res = {}
+        nameList = self.bsObj.findAll(key)
         for name in nameList:
             if 'href' in name.attrs:
-                link = {}
-                link[name.get_text()] = name.attrs['href']
-                res.append(link)
+                res[name.get_text()] = name.attrs['href']
         return res
 
-    def parse_html(self, options):
+    def parse_html(self, option):
         content = self._get_content()
         parser = 'html.parser'
         self.bsObj = BeautifulSoup(content, parser)
-        all_res = {}
-        for key, item in options.items():
-            res = self._get_obj_from_html(key, item)
-            all_res[key] = res
-        return all_res
-
+        return self._get_obj_from_html(option)
+        
     def get_all_hyperlinks(self):
-        options = {"a": {}}
-        return self.parse_html(options)
+        return self.parse_html('a')
 
     def get_all_links(self):
-        options = {"link": {}}
-        return self.parse_html(options)
+        return self.parse_html('link')
         
 
 if __name__ == '__main__':
