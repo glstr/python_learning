@@ -34,8 +34,9 @@ class DataDisplay:
         self.min = self._data_array.min()
         self.mean = np.mean(self._data_array)
         self.median = np.median(self._data_array)
-        self.cal_meta = True
         self.mode = mode(self._data_array)
+        self.cal_distribution()
+        self.cal_meta = True
         return 
 
     def display_meta(self):
@@ -45,6 +46,7 @@ class DataDisplay:
         print "mean:", self.mean
         print "median:", self.median
         print "mode:", self.mode
+        print "distribution:", self.distribution
         return 
 
     def show(self):
@@ -57,6 +59,10 @@ class DataDisplay:
         return 
 
     def cal_distribution(self):
+        percentiles = np.array([2.5, 25, 50, 75, 97.5])
+        # Compute percentiles: ptiles_vers
+        ptiles_vers = np.percentile(self._data_array, percentiles)
+        self.distribution = ptiles_vers      
         return 
     
 
