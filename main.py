@@ -8,6 +8,7 @@ def print_hello():
 
 if __name__ == '__main__':
     # thread_tool.excute_in_thread()
+    print_hello()
     print type(print_hello())
     print type(print_hello)
     print "hello world"
