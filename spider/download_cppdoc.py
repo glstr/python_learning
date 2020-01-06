@@ -46,11 +46,14 @@ class LinkSelector(object):
     def get_all_out_domain_urls(self, input_urls):
         object_urls = []
         return object_urls
-    
+
+    def link_filter(self):
+        pass
+
 
 class SiteDownloader(object):
-    def __init__(self, origin_url):
-        self.origin_url = origin_url
+    def __init__(self):
+        self.origin_url = ''
         return 
 
     def urls_gather(self):
@@ -93,12 +96,19 @@ class SiteDownloader(object):
         object_urls = lselector.get_all_in_domain_urls(input_urls)
         return object_urls
 
+    def usage(self):
+        print "usage:"
+        print "python *.py start_url"
+
+    def start(self, params):
+        if len(params) != 3:
+            self.usage()
+        else:
+            self.origin_url = params[2]
+            object_urls = self.urls_gather()
+            pprint.pprint(object_urls)
+
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print "param error"
-        exit(1)
-    else: 
-        sd = SiteDownloader(sys.argv[1])
-        object_urls = sd.urls_gather()
-        pprint.pprint(object_urls)
+    sd = SiteDownloader()
+    sd.start(sys.argv)
