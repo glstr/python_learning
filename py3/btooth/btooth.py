@@ -26,9 +26,27 @@ def usage():
 def execcmd(cmd, params):
     if cmd == "lookup_name":
         lookup_name(params)
+    elif cmd == "dis":
+        discover()
+    else:
+        usage()
 
 
-if __name__ == '__main__':
+class Btoother:
+    def __init__(self):
+        return 
+
+    def connect(self, addr):
+        return 
+
+    def send(self, msg):
+        return 
+
+    def recv(self, msg):
+        return 
+
+
+if __name__ == '__main__':    
     print(len(sys.argv))
 
     if len(sys.argv) < 2:
