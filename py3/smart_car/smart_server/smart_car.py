@@ -50,6 +50,16 @@ class LED:
             print "not support"
         return 
 
+class Sensor:
+    def __init__(self):
+        self.AvoidSensorLeft = 12
+        self.AvoidSensorRight = 17
+
+    def load(self):
+        GPIO.setup(self.AvoidSensorLeft,GPIO.IN)
+        GPIO.setup(self.AvoidSensorRight,GPIO.IN)
+
+
 class Engine:
     def __init__(self):
         self.IN1 = 20
@@ -81,14 +91,14 @@ class Engine:
         self.pwm_ENA.stop()
         self.pwm_ENB.stop()
 
-    def brake(self):
+    def brake(self, delaytime):
         print "stop"
-        GPIO.output(IN1, GPIO.LOW)
-        GPIO.output(IN2, GPIO.LOW)
-        GPIO.output(IN3, GPIO.LOW)
-        GPIO.output(IN4, GPIO.LOW)
-        pwm_ENA.ChangeDutyCycle(80)
-        pwm_ENB.ChangeDutyCycle(80)
+        GPIO.output(self.IN1, GPIO.LOW)
+        GPIO.output(self.IN2, GPIO.LOW)
+        GPIO.output(self.IN3, GPIO.LOW)
+        GPIO.output(self.IN4, GPIO.LOW)
+        self.pwm_ENA.ChangeDutyCycle(80)
+        self.pwm_ENB.ChangeDutyCycle(80)
         time.sleep(delaytime)
 
     def run(self, delaytime):
@@ -103,6 +113,7 @@ class Engine:
         #self.pwm_ENA.start(100)
         #self.pwm_ENB.start(100)
         time.sleep(delaytime)
+        self.brake(delaytime)
 
     def back(self, delaytime):
         print "back"
@@ -113,6 +124,7 @@ class Engine:
         self.pwm_ENA.ChangeDutyCycle(80)
         self.pwm_ENB.ChangeDutyCycle(80)
         time.sleep(delaytime)
+        self.brake(delaytime)
 
     def left(self, delaytime):
         print "left"
@@ -123,6 +135,7 @@ class Engine:
         self.pwm_ENA.ChangeDutyCycle(80)
         self.pwm_ENB.ChangeDutyCycle(80)
         time.sleep(delaytime)
+        self.brake(delaytime)
 
     def right(self, delaytime):
         print "right"
@@ -133,6 +146,7 @@ class Engine:
         self.pwm_ENA.ChangeDutyCycle(80)
         self.pwm_ENB.ChangeDutyCycle(80)
         time.sleep(delaytime)
+        self.brake(delaytime)
 
     def spin_left(self, delaytime):
         print "spin_left"

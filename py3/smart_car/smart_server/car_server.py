@@ -6,15 +6,18 @@ import SocketServer
 
 import smart_car 
 
-PORT = 8080
+PORT = 8882
 car = smart_car.SmartCar()
 
 #directions path
 directions = {
-        "/run": smart_car.FORWARD, 
-        "/back": smart_car.BACK,
-        "/left": smart_car.LEFT,
-        "/right": smart_car.RIGHT
+        "smartcar/run": smart_car.FORWARD, 
+        "smartcar/back": smart_car.BACK,
+        "smartcar/left": smart_car.LEFT,
+        "smartcar/right": smart_car.RIGHT,
+        "smartcar/brake": smart_car.BRAKE,
+        "smartcar/spin_left": smart_car.SPIN_LEFT,
+        "smartcar/spin_right": smart_car.SPIN_LEFT,
         }
 
 def control_car(path):
@@ -28,7 +31,7 @@ def control_car(path):
         return 
     
     if path in directions:
-        car.run(directions[path], 2)
+        car.run(directions[path], 1)
 
 class SmartServerHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(self):
