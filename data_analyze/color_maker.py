@@ -8,13 +8,16 @@ class ColorMaker:
     def __init__(self, file_in, file_out):
         self.input_path = file_in
         self.output_path = file_out
+        # 初始化颜色列表
         self.colors = get_multi_colors_by_rgb([255,0,0], [0,255,255],100)
 
     def make(self):
         fout = open(self.output_path, 'w')
         with open(self.input_path) as f:
             for line in f:
+                # 获取处理函数
                 proc_func = self.get_process_func()
+                # 处理属性值，并获取颜色
                 new_line = proc_func(line)
                 if new_line != "":
                     fout.write(new_line)
@@ -39,10 +42,13 @@ class ColorMaker:
             print "parse err"
             return ""
 
+        # 获取颜色处理函数
         color_func = self.get_color_func()
+        # 处理得到颜色值
         color = color_func(data_buffer[10])
         temp = (data_buffer[1], data_buffer[2], data_buffer[3], data_buffer[10], color)
         seq = ' '
+        # 拼装输出结果
         result = seq.join(temp)
         result = result + "\n"
         return result
@@ -60,21 +66,29 @@ class ColorMaker:
         return self.get_color_rgb
 
     def get_color_rgb(self, feature):
+        '''
+        返回颜色值从颜色表中获取
+        '''
         fea = float(feature)
         if fea > 1 or fea < -1:
             print "featur error"
             return ""
 
+        # 根据属性值找到对应颜色表中的颜色值
         color_index = self._get_color_index(fea)
         color = self.colors[color_index]
         color_str = []
         for c in color:
             color_str.append(str(c))
         seq = ' '
+        # 将颜色值作为一列属性输出
         color = seq.join(color_str)
         return color
 
     def _get_color_green(self, feature):
+        '''
+        渐变的颜色仅限于绿色
+        '''
         fea = float(feature)
         if fea > 1 or fea < -1:
             print "featur error"
@@ -90,6 +104,10 @@ class ColorMaker:
         return color
 
     def _get_color_index(self, fea):
+        '''
+        属性值归一化,属性值从-1 到 1， 颜色表有100个颜色，
+        TODO： 颜色表颜色个数支持自定义 
+        '''
         color_num = 0.0
         if fea > 0:
             color_num = (1.0 - fea) * 100.0 
