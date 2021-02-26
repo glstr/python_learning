@@ -43,6 +43,15 @@ def get_date_from_ts(format):
     return format_time
 
 
+# support ms
+def ts_to_time(ts):
+    print ts
+    d = datetime.datetime.fromtimestamp(ts/1000.0)
+    format_time = d.strftime("%Y-%m-%d %H:%M:%S.%f")
+    print format_time
+    return format_time
+
+
 def get_ts_from_date(date_str):
     '''
         @note: Get timestamp from date as 2018051300.

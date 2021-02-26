@@ -9,7 +9,8 @@ class ColorMaker:
         self.input_path = file_in
         self.output_path = file_out
         # 初始化颜色列表
-        self.colors = get_multi_colors_by_rgb([255,0,0], [0,255,255],100)
+        self.colors = get_multi_colors_by_rgb([255, 0, 0], [0, 255, 0], 51)
+        print self.colors
 
     def make(self):
         fout = open(self.output_path, 'w')
@@ -21,6 +22,9 @@ class ColorMaker:
                 new_line = proc_func(line)
                 if new_line != "":
                     fout.write(new_line)
+                else:
+                    print "process fail", line
+                    return 
         fout.close()
 
     def get_process_func(self):
@@ -109,10 +113,13 @@ class ColorMaker:
         TODO： 颜色表颜色个数支持自定义 
         '''
         color_num = 0.0
-        if fea > 0:
-            color_num = (1.0 - fea) * 100.0 
+        # if fea > 0:
+        if fea > 0.5:
+            # color_num = (1.0 - fea) * 50.0 
+            color_num = 0
         else:
-            color_num = (fea + 1.0) * 100.0
+            # color_num = (fea + 1.0) * 50.0
+            color_num = 50
         return int(color_num)
 
 
